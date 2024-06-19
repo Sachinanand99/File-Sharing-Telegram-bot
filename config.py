@@ -57,7 +57,8 @@ https://instantearn.in/member/dashboard
 https://publicearn.com/member/dashboard
 """
 
-# Turn this feature on or off using True or False
+# Turn this feature on or off using True or False put value inside  ""
+# True for yes False if no
 USE_SHORTLINK = True if os.environ.get('USE_SHORTLINK', "True") == "True" else False 
 #Your Shortner url. eg: api.shareus.io, 
 SHORTLINK_URL = os.environ.get("SHORTLINK_URL", "")
@@ -71,9 +72,11 @@ FORCE_MSG = os.environ.get("FORCE_SUB_MESSAGE", "Hello {first}\n\n<b>You need to
 #custom caption 
 CUSTOM_CAPTION = os.environ.get("CUSTOM_CAPTION", None)
 #protected content so that no files can be sent from the bot to anyone. recommended False
+# True for yes False if no
 PROTECT_CONTENT = True if os.environ.get('PROTECT_CONTENT', "False") == "True" else False
 #used if you dont need buttons on database channel.
-DISABLE_CHANNEL_BUTTON = True if os.environ.get("DISABLE_CHANNEL_BUTTON", None) == "True" else False
+# True for yes False if no
+DISABLE_CHANNEL_BUTTON = True if os.environ.get("DISABLE_CHANNEL_BUTTON", "True") == "True" else False
 
 
 #no need to add anything from now on
