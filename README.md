@@ -82,12 +82,18 @@ python3 main.py
 
 ### Token verification variables
 
-* `SHORTLINK_URL` Your Shortner url. eg: shareus.io
+* `USE_SHORTLINK` Turn this feature on or off using True or False
+* `SHORTLINK_URL` Your Shortner url. eg: shareus.io, 
 * `SHORTLINK_API` shortner api key.
 * `VERIFY_EXPIRE` verify expire time in seconds.
-* `IS_VERIFY` Verify True Or False.
-* `TUT_VID` Verification tutorial video link
+* `TUT_VID` Verification tutorial video link. eg: https://t.me/How_to_Download_7x/32
 
+# some token verification sites
+https://dashboard.shareus.io/
+https://shrinkforearn.in/member/dashboard
+https://gplinks.com/member/dashboard
+https://instantearn.in/member/dashboard
+https://publicearn.com/member/dashboard
 
 ### Extra Variables
 
@@ -116,11 +122,12 @@ python3 main.py
 * `{uptime}` - Bot Uptime
 
 
-Report Bugs, Give Feature Requests There..   
+Report Bugs, Give Feature Requests at https://github.com/Sachinanand99/File-Sharing-Telegram-bot/issues 
 
 ### Credits
 
 - Thanks To Dan For His Awsome [Libary](https://github.com/pyrogram/pyrogram)
+- Thanks to everyone who is on this awesome opensource project.
 
 ##
 
