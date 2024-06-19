@@ -75,7 +75,7 @@ python3 main.py
 * `START_MESSAGE` Optional: start message of bot, use HTML
 * `FORCE_SUB_MESSAGE`Optional:Force sub message of bot, use HTML and Fillings
 * `FORCE_SUB_CHANNEL` Optional: ForceSub Channel ID, leave 0 if you want disable force sub
-* `FORCE_SUB_CHANNEL2` Optional: ForceSub Channel ID, leave 0 if you want disable force sub 2
+* `FORCE_SUB_CHANNEL2` Optional: ForceSub Channel ID, leave 0 if you want disable force sub 2, bot may become a bit slower if you add this.
 * `PROTECT_CONTENT` Optional: True if you need to prevent files from forwarding
 
 ### Extra Variables
