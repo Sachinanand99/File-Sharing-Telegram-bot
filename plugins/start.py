@@ -5,7 +5,7 @@ from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
 from pyrogram.errors import FloodWait, UserIsBlocked, InputUserDeactivated
 
 from bot import Bot
-from config import ADMINS, FORCE_MSG, OWNER_TAG, START_MSG, CUSTOM_CAPTION, DISABLE_CHANNEL_BUTTON, PROTECT_CONTENT, OWNER_ID, CHANNEL_LINK
+from config import ADMINS, FORCE_MSG, OWNER_TAG, START_MSG, CUSTOM_CAPTION, DISABLE_CHANNEL_BUTTON, PROTECT_CONTENT, OWNER_ID, CHANNEL_LINK, FORCE_SUB_CHANNEL2
 from helper_func import subscribed, subscribed2, decode, get_messages, removeDuplicates
 from database.database import add_user, del_user, full_userbase, present_user
 
@@ -125,16 +125,25 @@ REPLY_ERROR = """<code>Use this command as a replay to any telegram message with
 
 @Bot.on_message(filters.command('start') & filters.private)
 async def not_joined(client: Client, message: Message):
-    buttons = [
-        [
-            InlineKeyboardButton(
-                "Join Channel",
-                url=client.invitelink),
-            InlineKeyboardButton(
-                "Join Channel",
-                url=client.invitelink2),
+    if FORCE_SUB_CHANNEL2:    
+        buttons = [
+            [
+                InlineKeyboardButton(
+                    "Join Channel",
+                    url=client.invitelink),
+                InlineKeyboardButton(
+                    "Join Channel",
+                    url=client.invitelink2),
+            ]
         ]
-    ]
+    else:
+        buttons = [
+            [
+                InlineKeyboardButton(
+                    "Join Channel",
+                    url=client.invitelink),
+            ]
+        ]
     try:
         buttons.append(
             [
