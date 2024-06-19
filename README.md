@@ -46,7 +46,7 @@ git clone https://github.com/Sachinanand99/File-Sharing-Bot.git
 cd File-Sharing-Bot
 pip3 install -r requirements.txt
 # <Create config.py appropriately>
-python3 main.py
+python3 setup.py
 ````
 
 ## Basic Commands
