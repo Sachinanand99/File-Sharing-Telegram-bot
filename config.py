@@ -31,8 +31,18 @@ TG_BOT_WORKERS = int(os.environ.get("TG_BOT_WORKERS", "4"))
 START_MSG = os.environ.get("START_MESSAGE", "Hello {first}\n\nI can store private files in Specified Channel and other users can access it from special link.")
 #your telegram tag
 OWNER_TAG = ""
+#Time in seconds for message delete
+TIME = int(os.environ.get("TIME", "60"))
 #add admins in the list without "" or ''
-ADMINS=[34768, 343487]#remove predefined numbers <<just for demonstration purpose
+ADMINS=[34768, 343487]#remove predefined numbers <<just for demonstration purpose>>
+
+#Shortner (token system) 
+SHORTLINK_URL = os.environ.get("SHORTLINK_URL", "api.shareus.io")
+SHORTLINK_API = os.environ.get("SHORTLINK_API", "")
+VERIFY_EXPIRE = int(os.environ.get('VERIFY_EXPIRE', 86400)) # Add time in seconds
+IS_VERIFY = os.environ.get("IS_VERIFY", "True")
+TUT_VID = os.environ.get("TUT_VID","https://t.me/How_to_Download_7x/32")
+
 try:
     for x in (os.environ.get("ADMINS", "").split()):
         ADMINS.append(int(x))
