@@ -1,6 +1,9 @@
+import asyncio
+from pyrogram import Client, filters
+from pyrogram.enums import ParseMode
+from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
+from pyrogram.errors import FloodWait, UserIsBlocked, InputUserDeactivated
 
-<<<<<<< HEAD
-=======
 from bot import Bot
 from config import ADMINS, FORCE_MSG, OWNER_TAG, START_MSG, CUSTOM_CAPTION, DISABLE_CHANNEL_BUTTON, PROTECT_CONTENT, OWNER_ID, CHANNEL_LINK, FORCE_SUB_CHANNEL2
 from helper_func import subscribed, subscribed2, decode, get_messages, removeDuplicates
@@ -246,4 +249,3 @@ async def auth_command(client: Bot, message: Message):
     )
 
     await message.reply("Please wait for verification from the owner.")
->>>>>>> eb1741bee2807923fb677dcf0011700f4432f973
