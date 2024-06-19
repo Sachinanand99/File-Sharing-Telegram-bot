@@ -5,7 +5,9 @@ import logging
 from logging.handlers import RotatingFileHandler
 
 #add admins in the list without "" or ''
-ADMINS=[34768, 343487]#remove predefined numbers <<just for demonstration purpose. no need to add owner.
+#remove predefined numbers <<just for demonstration purpose. no need to add owner.>>
+# ADMINS=[34768, 343487]
+ADMINS=[]
 
 #force user to join your backup channel leave 0 if you don't need.
 FORCE_SUB_CHANNEL = int(os.environ.get("FORCE_SUB_CHANNEL", "0"))
@@ -71,7 +73,7 @@ CUSTOM_CAPTION = os.environ.get("CUSTOM_CAPTION", None)
 #protected content so that no files can be sent from the bot to anyone. recommended False
 PROTECT_CONTENT = True if os.environ.get('PROTECT_CONTENT', "False") == "True" else False
 #used if you dont need buttons on database channel.
-DISABLE_CHANNEL_BUTTON = os.environ.get("DISABLE_CHANNEL_BUTTON", None) == 'True'
+DISABLE_CHANNEL_BUTTON = True if os.environ.get("DISABLE_CHANNEL_BUTTON", None) == "True" else False
 
 
 #no need to add anything from now on
