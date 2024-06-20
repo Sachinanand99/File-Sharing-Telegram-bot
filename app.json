@@ -53,7 +53,8 @@
       },
       "TIME": {
         "description":"Enter the time after which message gets deleted",
-        "value": "60"
+        "value": "60",
+        "required": false
       },
       "FORCE_SUB_CHANNEL": {
         "description": "Enter your channel id for forcesub 1",
@@ -123,7 +124,7 @@
       "DISABLE_CHANNEL_BUTTON": {
         "description" : "Enter False if need to enable buttons in database channel",
         "value" : "True",
-        "required" : "false"
+        "required" : false
       }
     },
     "buildpacks": [

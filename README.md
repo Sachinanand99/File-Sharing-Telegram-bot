@@ -121,6 +121,15 @@ https://publicearn.com/member/dashboard
 
 * `{uptime}` - Bot Uptime
 
+### Required Environment Variables
+* TG_BOT_TOKEN
+* APP_ID
+* API_HASH
+* DB_URL
+* CHANNEL_LINK
+* CHANNEL_ID
+* OWNER_ID
+* OWNER_TAG
 
 Report Bugs, Give Feature Requests at https://github.com/Sachinanand99/File-Sharing-Telegram-bot/issues 
 
