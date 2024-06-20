@@ -4,14 +4,18 @@ import logging
 
 from logging.handlers import RotatingFileHandler
 
-#add admins in the list without "" or ''
+#add admins in the list without "" or '' and without comma
 #remove predefined numbers <<just for demonstration purpose. no need to add owner.>>
-# ADMINS=[34768, 343487]
-ADMINS=[]
-
+#eg : ADMINS="34768  343487"
+ADMINS = list(set(int(x) for x in os.environ.get("ADMINS", "").split()))
 #force user to join your backup channel leave 0 if you don't need.
 FORCE_SUB_CHANNEL = int(os.environ.get("FORCE_SUB_CHANNEL", "0"))
 FORCE_SUB_CHANNEL2 = int(os.environ.get("FORCE_SUB_CHANNEL2", "0"))
+
+if FORCE_SUB_CHANNEL > FORCE_SUB_CHANNEL2:
+    temp = FORCE_SUB_CHANNEL2 
+    FORCE_SUB_CHANNEL2 = FORCE_SUB_CHANNEL
+    FORCE_SUB_CHANNEL = temp
 
 #bot stats
 BOT_STATS_TEXT = os.environ.get("BOTS_STATS_TEXT","<b>BOT UPTIME</b>\n{uptime}")
@@ -26,16 +30,16 @@ APP_ID = int(os.environ.get("APP_ID", ""))
 API_HASH = os.environ.get("API_HASH", "")
 #your channel_id from https://t.me/MissRose_bot by forwarding dummy message to rose and applying command `/id` in reply to that message
 CHANNEL_ID = int(os.environ.get("CHANNEL_ID", ""))
-#your channel link
+#your database channel link
 CHANNEL_LINK = os.environ.get("CHANNEL_LINK", "")
 #your id of telegram can be found by https://t.me/MissRose_bot with '/id' command
 OWNER_ID = int(os.environ.get("OWNER_ID", ""))
 #port set to default 8080
 PORT = os.environ.get("PORT", "8080")
 #your database url mongodb only You can use mongo atlas free cloud database
-DB_URI = os.environ.get("DATABASE_URL", "")
+DB_URL = os.environ.get("DATABASE_URL", "")
 #your database name
-DB_NAME = os.environ.get("DATABASE_NAME", "")
+DB_NAME = os.environ.get("DATABASE_NAME", "filestorebot")
 
 #for creating telegram thread for bot to improve performance of the bot
 TG_BOT_WORKERS = int(os.environ.get("TG_BOT_WORKERS", "4"))
@@ -59,7 +63,7 @@ https://publicearn.com/member/dashboard
 
 # Turn this feature on or off using True or False put value inside  ""
 # True for yes False if no
-USE_SHORTLINK = True if os.environ.get('USE_SHORTLINK', "True") == "True" else False 
+USE_SHORTLINK = True if os.environ.get('USE_SHORTLINK', "False") == "True" else False 
 #Your Shortner url. eg: api.shareus.io, 
 SHORTLINK_URL = os.environ.get("SHORTLINK_URL", "")
 SHORTLINK_API = os.environ.get("SHORTLINK_API", "")
