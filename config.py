@@ -63,6 +63,9 @@ USE_SHORTLINK = True if os.environ.get('USE_SHORTLINK', "True") == "True" else F
 #Your Shortner url. eg: api.shareus.io, 
 SHORTLINK_URL = os.environ.get("SHORTLINK_URL", "")
 SHORTLINK_API = os.environ.get("SHORTLINK_API", "")
+#add your custom time in secs for shortlink expiration.
+# 24hr = 86400
+# 12hr = 43200
 VERIFY_EXPIRE = int(os.environ.get('VERIFY_EXPIRE', 86400)) # Add time in seconds
 #Tutorial video for the user of your shortner on how to download.
 TUT_VID = os.environ.get("TUT_VID","https://t.me/How_to_Download_7x/32")
