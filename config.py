@@ -55,17 +55,13 @@ TIME = int(os.environ.get("TIME", "60"))
 """
 some token verification sites
 https://dashboard.shareus.io/
-https://shrinkforearn.in/member/dashboard
-https://gplinks.com/member/dashboard
-https://instantearn.in/member/dashboard
-https://publicearn.com/member/dashboard
 """
 
 # Turn this feature on or off using True or False put value inside  ""
 # True for yes False if no
 USE_SHORTLINK = True if os.environ.get('USE_SHORTLINK', "False") == "True" else False 
-#Your Shortner url. eg: api.shareus.io, 
-SHORTLINK_URL = os.environ.get("SHORTLINK_URL", "")
+# only shareus service known rightnow rest you can test on your own
+SHORTLINK_URL = os.environ.get("SHORTLINK_URL", "api.shareus.io")
 SHORTLINK_API = os.environ.get("SHORTLINK_API", "")
 #add your custom time in secs for shortlink expiration.
 # 24hr = 86400

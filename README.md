@@ -83,17 +83,10 @@ python3 main.py
 ### Token verification variables
 
 * `USE_SHORTLINK` Turn this feature on or off using True or False
-* `SHORTLINK_URL` Your Shortner url. eg: shareus.io, 
+* `SHORTLINK_URL` Your Shortner url  api.shareus.io, 
 * `SHORTLINK_API` shortner api key.
 * `VERIFY_EXPIRE` verify expire time in seconds.
 * `TUT_VID` Verification tutorial video link. eg: https://t.me/How_to_Download_7x/32
-
-# some token verification sites
-https://dashboard.shareus.io/
-https://shrinkforearn.in/member/dashboard
-https://gplinks.com/member/dashboard
-https://instantearn.in/member/dashboard
-https://publicearn.com/member/dashboard
 
 ### Extra Variables
 
