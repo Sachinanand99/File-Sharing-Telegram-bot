@@ -38,6 +38,7 @@ OWNER_ID = int(os.environ.get("OWNER_ID", ""))
 PORT = os.environ.get("PORT", "8080")
 #your database url mongodb only You can use mongo atlas free cloud database
 DB_URL = os.environ.get("DATABASE_URL")
+# DB_URL = os.environ.get("DATABASE_URL", "") #for hosting locally comment above and uncomment this
 #your database name
 DB_NAME = os.environ.get("DATABASE_NAME", "filestorebot")
 
