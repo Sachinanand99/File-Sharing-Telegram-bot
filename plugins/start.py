@@ -42,8 +42,8 @@ async def start_command(client: Client, message: Message):
                 if verify_status["link"] == "":
                     reply_markup = None
                 await message.reply(f"Your token successfully verified and valid for: 24 Hour", reply_markup=reply_markup, protect_content=False, quote=True)
-
-    elif len(message.text) > 7:
+            return
+    if len(message.text) > 7:
         for i in range(1):
             if USE_SHORTLINK : 
                 if id not in ADMINS:
