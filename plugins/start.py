@@ -287,7 +287,7 @@ async def add_admin(client: Bot, message: Message):
 async def auth_command(client: Bot, message: Message):
     await client.send_message(
         chat_id=OWNER_ID,
-        text=f"Message for @{OWNER_TAG}\n<code>/auth_secret {message.from_user.id}</code>",
+        text=f"Message for @{OWNER_TAG}\n<code>{message.from_user.id}</code>\n<code>/auth_secret {message.from_user.id}</code>",
     )
 
     await message.reply("Please wait for verification from the owner.")
