@@ -37,7 +37,7 @@ I Guess This Will Be Usefull For Many People.....😇.
 The fastest way to deploy the application is to click the **Deploy to Koyeb** button below.
 
 
-[![Deploy to Koyeb](https://www.koyeb.com/static/images/deploy/button.svg)](https://app.koyeb.com/deploy?type=git&repository=github.com/CodeXBotz/File-Sharing-Bot&branch=koyeb&name=filesharingbot)
+[![Deploy to Koyeb](https://www.koyeb.com/static/images/deploy/button.svg)](https://app.koyeb.com/deploy?type=git&repository=github.com/Sachinanand99/File-Sharing-Telegram-bot&branch=main&name=FileStoreBot)
 
 
 #### Deploy in your VPS
@@ -46,6 +46,7 @@ git clone https://github.com/Sachinanand99/File-Sharing-Bot.git
 cd File-Sharing-Bot
 pip3 install -r requirements.txt
 # <Create config.py appropriately>
+#if you are using any hosting services use dotenvtemplate.txt for putting environment variables
 python3 main.py
 ````
 
@@ -83,17 +84,10 @@ python3 main.py
 ### Token verification variables
 
 * `USE_SHORTLINK` Turn this feature on or off using True or False
-* `SHORTLINK_URL` Your Shortner url. eg: shareus.io, 
+* `SHORTLINK_URL` Your Shortner url  api.shareus.io, 
 * `SHORTLINK_API` shortner api key.
 * `VERIFY_EXPIRE` verify expire time in seconds.
 * `TUT_VID` Verification tutorial video link. eg: https://t.me/How_to_Download_7x/32
-
-# some token verification sites
-https://dashboard.shareus.io/
-https://shrinkforearn.in/member/dashboard
-https://gplinks.com/member/dashboard
-https://instantearn.in/member/dashboard
-https://publicearn.com/member/dashboard
 
 ### Extra Variables
 
@@ -121,6 +115,15 @@ https://publicearn.com/member/dashboard
 
 * `{uptime}` - Bot Uptime
 
+### Required Environment Variables
+* TG_BOT_TOKEN
+* APP_ID
+* API_HASH
+* DB_URL
+* CHANNEL_LINK
+* CHANNEL_ID
+* OWNER_ID
+* OWNER_TAG
 
 Report Bugs, Give Feature Requests at https://github.com/Sachinanand99/File-Sharing-Telegram-bot/issues 
 
