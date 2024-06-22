@@ -37,11 +37,11 @@ async def start_command(client: Client, message: Message):
             if "verify_" in message.text:
                 _, token = message.text.split("_", 1)
                 if verify_status['verify_token'] != token:
-                    return await message.reply("Your token is invalid or Expired. Try again by clicking /start")
+                    return await message.reply("Your token is invalid or Expired ⌛. Try again by clicking /start")
                 await update_verify_status(id, is_verified=True, verified_time=time.time())
                 if verify_status["link"] == "":
                     reply_markup = None
-                await message.reply(f"Your token successfully verified and valid for: 24 Hour", reply_markup=reply_markup, protect_content=False, quote=True)
+                await message.reply(f"Your token successfully verified and valid for: 24 Hour ⏳", reply_markup=reply_markup, protect_content=False, quote=True)
     if len(message.text) > 7:
         for i in range(1):
             if USE_SHORTLINK : 
@@ -78,11 +78,11 @@ async def start_command(client: Client, message: Message):
                     ids = [int(int(argument[1]) / abs(client.db_channel.id))]
                 except:
                     return
-            temp_msg = await message.reply("Please wait...")
+            temp_msg = await message.reply("Please wait... 🫷")
             try:
                 messages = await get_messages(client, ids)
             except:
-                await message.reply_text("Something went wrong..!")
+                await message.reply_text("Something went wrong..! 🥲")
                 return
             await temp_msg.delete()
             snt_msgs = []
@@ -113,7 +113,7 @@ async def start_command(client: Client, message: Message):
                     await snt_msg.delete()  
                 except: 
                     pass    
-            await notification_msg.edit("<b>Your file has been successfully deleted!</b>")  
+            await notification_msg.edit("<b>Your file has been successfully deleted! 😼</b>")  
             return  
     if (1 == 1):
         for i in range(1):
@@ -156,8 +156,8 @@ async def start_command(client: Client, message: Message):
                 await update_verify_status(id, verify_token=token, link="")
                 link = await get_shortlink(SHORTLINK_URL, SHORTLINK_API,f'https://telegram.dog/{client.username}?start=verify_{token}')
                 btn = [
-                    [InlineKeyboardButton("Click Here", url=link)],
-                    [InlineKeyboardButton('How to open this link', url=TUT_VID)]
+                    [InlineKeyboardButton("Click Here 👆", url=link)],
+                    [InlineKeyboardButton('How to open this link 👆', url=TUT_VID)]
                 ]
                 await message.reply(f"Your Ads token is expired, refresh your token and try again. \n\nToken Timeout: {get_exp_time(VERIFY_EXPIRE)}\n\nWhat is the token?\n\nThis is an ads token. If you pass 1 ad, you can use the bot for 24 Hour after passing the ad", reply_markup=InlineKeyboardMarkup(btn), protect_content=False, quote=True)
                 return
@@ -178,10 +178,10 @@ async def not_joined(client: Client, message: Message):
     buttons = [
         [
             InlineKeyboardButton(
-                "Join Channel",
+                "Join Channel 👆",
                 url=client.invitelink),
             InlineKeyboardButton(
-                "Join Channel",
+                "Join Channel 👆",
                 url=client.invitelink2),
         ]
     ]
@@ -189,7 +189,7 @@ async def not_joined(client: Client, message: Message):
         buttons.append(
             [
                 InlineKeyboardButton(
-                    text='Try Again',
+                    text='Try Again 🥺',
                     url=f"https://t.me/{client.username}?start={message.command[1]}"
                 )
             ]
@@ -214,7 +214,7 @@ async def not_joined(client: Client, message: Message):
 async def get_users(client: Bot, message: Message):
     msg = await client.send_message(chat_id=message.chat.id, text=WAIT_MSG)
     users = await full_userbase()
-    await msg.edit(f"{len(users)} users are using this bot")
+    await msg.edit(f"{len(users)} users are using this bot 👥")
 
 @Bot.on_message(filters.private & filters.command('broadcast') & filters.user(ADMINS))
 async def send_text(client: Bot, message: Message):
@@ -227,7 +227,7 @@ async def send_text(client: Bot, message: Message):
         deleted = 0
         unsuccessful = 0
 
-        pls_wait = await message.reply("<i>Broadcasting Message.. This will Take Some Time</i>")
+        pls_wait = await message.reply("<i>Broadcasting Message.. This will Take Some Time ⌚</i>")
         for chat_id in query:
             try:
                 await broadcast_msg.copy(chat_id)
@@ -247,7 +247,7 @@ async def send_text(client: Bot, message: Message):
                 pass
             total += 1
 
-        status = f"""<b><u>Broadcast Completed</u>
+        status = f"""<b><u>Broadcast Completed 🟢</u>
 
 Total Users: <code>{total}</code>
 Successful: <code>{successful}</code>
@@ -268,18 +268,18 @@ async def add_admin(client: Bot, message: Message):
     try:
         reply_markup = InlineKeyboardMarkup(
             [
-                [InlineKeyboardButton("Join Channel", url=CHANNEL_LINK)]
+                [InlineKeyboardButton("Join Channel 👆", url=CHANNEL_LINK)]
             ]
         )
-        await message.reply("User has been added as an admin.")
+        await message.reply("User has been added as an admin. 😼")
         await client.send_message(
             chat_id=user_id,
-            text=f"You are verified, join the channel for forwarding links for batch commands.",
+            text=f"You are verified, join the channel for forwarding links for batch commands. 😁",
             reply_markup=reply_markup
         )
 
     except Exception as e:
-        await message.reply("Failed to verify user. Please ensure the user ID is correct and that they have started the bot.")
+        await message.reply("Failed to verify user. Please ensure the user ID is correct and that they have started the bot. 🥲")
 
 
 @Bot.on_message(filters.command('auth') & filters.private)
@@ -289,4 +289,4 @@ async def auth_command(client: Bot, message: Message):
         text=f"Message for @{OWNER_TAG}\n<code>{message.from_user.id}</code>\n<code>/auth_secret {message.from_user.id}</code>",
     )
 
-    await message.reply("Please wait for verification from the owner.")
+    await message.reply("Please wait for verification from the owner. 🫣")
