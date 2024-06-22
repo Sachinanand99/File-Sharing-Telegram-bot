@@ -84,8 +84,8 @@ python3 main.py
 ### Token verification variables
 
 * `USE_SHORTLINK` Turn this feature on or off using True or False
-* `SHORTLINK_URL` Your Shortner url  api.shareus.io, 
-* `SHORTLINK_API` shortner api key.
+* `SHORTLINK_API_URL` Your Shortner url  api.shareus.io, 
+* `SHORTLINK_API_KEY` shortner api key.
 * `VERIFY_EXPIRE` verify expire time in seconds.
 * `TUT_VID` Verification tutorial video link. eg: https://t.me/How_to_Download_7x/32
 

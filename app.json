@@ -86,12 +86,12 @@
         "value": "False",
         "required": false
       },
-      "SHORTLINK_URL": {
+      "SHORTLINK_API_URL": {
         "description":"Enter your shortlink url",
         "value" : "",
         "required":false
       },
-      "SHORTLINK_API":{
+      "SHORTLINK_API_KEY":{
         "description": "Enter your shortlink api key",
         "value" : "",
         "required" : false

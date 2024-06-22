@@ -32,8 +32,8 @@ TIME=60
 
 # Shortlink Service (True/False)
 USE_SHORTLINK=False
-SHORTLINK_URL="api.shareus.io"  # Optional remove from .env if you dont need
-SHORTLINK_API=""                 # Optional remove from .env if you dont need
+SHORTLINK_API_URL="api.shareus.io"  # Optional remove from .env if you dont need
+SHORTLINK_API_KEY=""                 # Optional remove from .env if you dont need
 VERIFY_EXPIRE=86400
 TUT_VID="https://t.me/How_to_Download_7x/32"           # Optional
 
