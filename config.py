@@ -99,10 +99,10 @@ FORCE_MSG = os.environ.get("FORCE_SUB_MESSAGE", "Hello {first}\n\n<b>You need to
 CUSTOM_CAPTION = os.environ.get("CUSTOM_CAPTION", None)
 #protected content so that no files can be sent from the bot to anyone. recommended False
 # True for yes False if no
-USE_PAYMENT = True if ((os.environ.get("USE_PAYMENT", "FALSE")).capitalize == "TRUE") & (USE_SHORTLINK) else False
+PROTECT_CONTENT = True if os.environ.get('PROTECT_CONTENT', "False").capitalize == "TRUE" else False
 #used if you dont need buttons on database channel.
 # True for yes False if no
-DISABLE_CHANNEL_BUTTON = True if os.environ.get("DISABLE_CHANNEL_BUTTON", "True") == "True" else False
+DISABLE_CHANNEL_BUTTON = True if os.environ.get("DISABLE_CHANNEL_BUTTON", "TRUE").capitalize == "TRUE" else False
 #you can add admin inside the bot
 
 
