@@ -1,11 +1,12 @@
 
 import motor.motor_asyncio
-from config import DB_URL, DB_NAME
+from config import ADMINS, DB_URL, DB_NAME
 
 dbclient = motor.motor_asyncio.AsyncIOMotorClient(DB_URL)
 database = dbclient[DB_NAME]
 
 user_data = database['users']
+admin_data= database['admins']
 
 default_verify = {
     'is_verified': False,
@@ -25,6 +26,7 @@ def new_user(id):
         }
     }
 
+#users
 async def present_user(user_id: int):
     found = await user_data.find_one({'_id': user_id})
     return bool(found)
@@ -51,3 +53,26 @@ async def full_userbase():
 async def del_user(user_id: int):
     await user_data.delete_one({'_id': user_id})
     return
+
+#admins
+
+async def present_admin(user_id: int):
+    found = await admin_data.find_one({'_id': user_id})
+    return bool(found)
+
+
+async def add_admin(user_id: int):
+    user = new_user(user_id)
+    await admin_data.insert_one(user)
+    ADMINS.append(int(user_id))
+    return
+
+async def del_admin(user_id: int):
+    await admin_data.delete_one({'_id': user_id})
+    ADMINS.remove(int(user_id))
+    return
+
+async def full_adminbase():
+    user_docs = admin_data.find()
+    user_ids = [int(doc['_id']) async for doc in user_docs]
+    return user_ids

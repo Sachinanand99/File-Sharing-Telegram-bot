@@ -1,13 +1,12 @@
 from operator import add
 import os
 import logging
+import dotenv
+
+dotenv.load_dotenv()
 
 from logging.handlers import RotatingFileHandler
 
-#add admins in the list without "" or '' and without comma
-#remove predefined numbers <<just for demonstration purpose. no need to add owner.>>
-#eg : ADMINS="34768  343487"
-ADMINS = list(set(int(x) for x in os.environ.get("ADMINS", "").split()))
 #force user to join your backup channel leave 0 if you don't need.
 FORCE_SUB_CHANNEL = int(os.environ.get("FORCE_SUB_CHANNEL", "0"))
 FORCE_SUB_CHANNEL2 = int(os.environ.get("FORCE_SUB_CHANNEL2", "0"))
@@ -37,10 +36,9 @@ OWNER_ID = int(os.environ.get("OWNER_ID", ""))
 #port set to default 8080
 PORT = os.environ.get("PORT", "8080")
 #your database url mongodb only You can use mongo atlas free cloud database
-DB_URL = os.environ.get("DATABASE_URL")
-# DB_URL = os.environ.get("DATABASE_URL", "") #for hosting locally comment above and uncomment this
+DB_URL = os.environ.get("DB_URL", "")
 #your database name
-DB_NAME = os.environ.get("DATABASE_NAME", "filestorebot")
+DB_NAME = os.environ.get("DB_NAME", "filestorebot")
 
 #for creating telegram thread for bot to improve performance of the bot
 TG_BOT_WORKERS = int(os.environ.get("TG_BOT_WORKERS", "4"))
@@ -63,13 +61,37 @@ https://dashboard.shareus.io/
 USE_SHORTLINK = True if os.environ.get('USE_SHORTLINK', "False") == "True" else False 
 # only shareus service known rightnow rest you can test on your own
 SHORTLINK_API_URL = os.environ.get("SHORTLINK_API_URL", "api.shareus.io")
+# SHORTLINK_API_KEY = os.environ.get("SHORTLINK_API_KEY", "")
 SHORTLINK_API_KEY = os.environ.get("SHORTLINK_API_KEY", "")
 #add your custom time in secs for shortlink expiration.
 # 24hr = 86400
 # 12hr = 43200
-VERIFY_EXPIRE = int(os.environ.get('VERIFY_EXPIRE', 86400)) # Add time in seconds
+VERIFY_EXPIRE = int(os.environ.get('VERIFY_EXPIRE', "86400")) # Add time in seconds
 #Tutorial video for the user of your shortner on how to download.
 TUT_VID = os.environ.get("TUT_VID","https://t.me/How_to_Download_7x/32")
+
+#Payment to remove the token system
+#put TRUE if you want this feature.
+USE_SHORTLINK = True if (os.environ.get('USE_SHORTLINK', "False")).capitalize == "True" else False 
+#UPI ID
+UPI_ID = os.environ.get("UPI_ID", " ")
+#UPI QR CODE IMAGE
+UPI_IMAGE_URL = os.environ.get("UPI_IMAGE_URL", "")
+#SCREENSHOT URL of ADMIN for verification of payments
+SCREENSHOT_URL = os.environ.get("SCREENSHOT_URL", "")
+#Time and its price
+#7 Days
+PRICE1 = os.environ.get("PRICE1", "30 rs")
+#1 Month
+PRICE2 = os.environ.get("PRICE2", "110 rs")
+#3 Month
+PRICE3 = os.environ.get("PRICE3", "299 rs")
+#6 Month
+PRICE4 = os.environ.get("PRICE4", "550 rs")
+#1 Year
+PRICE5 = os.environ.get("PRICE5", "999 rs")
+
+
 
 #force message for joining the channel
 FORCE_MSG = os.environ.get("FORCE_SUB_MESSAGE", "Hello {first}\n\n<b>You need to join in my Channel/Group to use me\n\nKindly Please join Channel</b> 🥺")
@@ -77,18 +99,18 @@ FORCE_MSG = os.environ.get("FORCE_SUB_MESSAGE", "Hello {first}\n\n<b>You need to
 CUSTOM_CAPTION = os.environ.get("CUSTOM_CAPTION", None)
 #protected content so that no files can be sent from the bot to anyone. recommended False
 # True for yes False if no
-PROTECT_CONTENT = True if os.environ.get('PROTECT_CONTENT', "False") == "True" else False
+USE_PAYMENT = True if ((os.environ.get("USE_PAYMENT", "FALSE")).capitalize == "TRUE") & (USE_SHORTLINK) else False
 #used if you dont need buttons on database channel.
 # True for yes False if no
 DISABLE_CHANNEL_BUTTON = True if os.environ.get("DISABLE_CHANNEL_BUTTON", "True") == "True" else False
+#you can add admin inside the bot
+
+
 
 
 #no need to add anything from now on
-try:
-    for x in (os.environ.get("ADMINS", "").split()):
-        ADMINS.append(int(x))
-except ValueError:
-        raise Exception("Your Admins list does not contain valid integers.")
+
+ADMINS = []
 ADMINS.append(OWNER_ID)
 
 LOG_FILE_NAME = "logs.txt"

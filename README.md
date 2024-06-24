@@ -57,11 +57,15 @@ python3 main.py
 - `/batch` - To generate the link in batch (admin only) 🔗
 - `/genlink` - To generate link (admin only) 🔀
 - `/auth` - For using the bot which will send the ID to the owner's DM. The owner will add the admin to config file and restart the bot.
+- `/add_prem` - adding user to premium services(admins only)
+- `/admins` - list all admins(admins only)
+- `/ping` - For checking bot alive or not(admins only)
+- `/add_admin` - For adding new admins(owner only)
+- `/del_admin` - For removing admins(owner only)
+
 
 ## Secret Commands
 - `/broadcast` - Reply to any message to broadcast it to all users(owner only).
-- `/auth_secret <id>` - (for owner only) when the user is verified for admin and owner restarts the bot, this command will send the user of which the id is written will get a message to join the channel from where he/she can forward message for using the batch command.
-
 
 ### Variables
 
@@ -88,6 +92,18 @@ python3 main.py
 * `SHORTLINK_API_KEY` shortner api key.
 * `VERIFY_EXPIRE` verify expire time in seconds.
 * `TUT_VID` Verification tutorial video link. eg: https://t.me/How_to_Download_7x/32
+
+
+## Premium Verification variable
+* `USE_PAYMENT` Turn this feature on or off using True of False
+* `UPI_ID` Enter your UPI id
+* `UPI_IMAGE_URL` Enter your UPI QR
+* `SCREENSHOT_URL` Enter your profile link for verification of the users
+* `PRICE1` 7 days price
+* `PRICE2` 1 month price
+* `PRICE3` 3 month price
+* `PRICE4` 6 month price
+* `PRICE5` 1 year price
 
 ### Extra Variables
 

@@ -1,13 +1,13 @@
 from aiohttp import web
+from database.database import full_adminbase
 from plugins import web_server
-
-
 from pyrogram import Client
 from pyrogram.enums import ParseMode
 import sys
+from pyromod import listen
 from datetime import datetime
 
-from config import API_HASH, APP_ID, LOGGER, TG_BOT_TOKEN, TG_BOT_WORKERS, FORCE_SUB_CHANNEL,FORCE_SUB_CHANNEL2, CHANNEL_ID, PORT, OWNER_ID
+from config import ADMINS, API_HASH, APP_ID, LOGGER, TG_BOT_TOKEN, TG_BOT_WORKERS, FORCE_SUB_CHANNEL,FORCE_SUB_CHANNEL2, CHANNEL_ID, PORT, OWNER_ID
 
 class Bot(Client):
     def __init__(self):
@@ -61,7 +61,12 @@ class Bot(Client):
             self.LOGGER(__name__).warning(e)
             self.LOGGER(__name__).warning(f"Make Sure bot is Admin in DB Channel, and Double check the CHANNEL_ID Value, Current Value {CHANNEL_ID}")
             sys.exit()
-
+        
+        initadmin = await full_adminbase()
+        for x in initadmin:
+            if x in ADMINS:
+                continue
+            ADMINS.append(x)
         await self.send_message(
             chat_id=OWNER_ID,
             text="Bot has started! 😉"
@@ -82,5 +87,3 @@ class Bot(Client):
     async def stop(self, *args):
         await super().stop()
         self.LOGGER(__name__).info("Bot stopped.")
-
-

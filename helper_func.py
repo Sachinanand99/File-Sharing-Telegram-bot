@@ -1,6 +1,7 @@
 import base64
 import re
 import asyncio
+import time
 from pyrogram import filters
 from pyrogram.enums import ChatMemberStatus
 from config import FORCE_SUB_CHANNEL, FORCE_SUB_CHANNEL2, ADMINS
@@ -150,6 +151,17 @@ def get_exp_time(seconds):
             result += f'{int(period_value)}{period_name}'
     return result
 
-
+async def increasepremtime(user_id : int, timeforprem : int):
+    if timeforprem == 1: 
+        realtime = 86400*7
+    elif timeforprem == 2:
+        realtime = 86400*31
+    elif timeforprem == 3:
+        realtime == 86400*31*3
+    elif timeforprem == 4:
+        realtime == 86400*31*6
+    elif timeforprem == 5:
+        realtime == 86400*31*12
+    await update_verify_status(user_id, is_verified=True, verified_time=time.time()-realtime)
 subscribed = filters.create(is_subscribed)
 subscribed2 = filters.create(is_subscribed2)
