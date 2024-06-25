@@ -36,7 +36,7 @@ OWNER_ID = int(os.environ.get("OWNER_ID", ""))
 #port set to default 8080
 PORT = os.environ.get("PORT", "8080")
 #your database url mongodb only You can use mongo atlas free cloud database
-DB_URL = os.environ.get("DB_URL", "")
+DB_URL = os.environ.get("DB_URL", "mongodb+srv://sa8619:dsafb@cluster0.9uhmlry.mongodb.net/")
 #your database name
 DB_NAME = os.environ.get("DB_NAME", "filestorebot")
 
@@ -57,12 +57,13 @@ https://dashboard.shareus.io/
 """
 
 # Turn this feature on or off using True or False put value inside  ""
-# True for yes False if no
-USE_SHORTLINK = True if os.environ.get('USE_SHORTLINK', "False") == "True" else False 
+# TRUE for yes FALSE if no 
+USE_SHORTLINK = True if os.environ.get('USE_SHORTLINK', "FALSE") == "TRUE" else False 
 # only shareus service known rightnow rest you can test on your own
 SHORTLINK_API_URL = os.environ.get("SHORTLINK_API_URL", "api.shareus.io")
 # SHORTLINK_API_KEY = os.environ.get("SHORTLINK_API_KEY", "")
-SHORTLINK_API_KEY = os.environ.get("SHORTLINK_API_KEY", "")
+#use this key if not working ☠️ (jokin!!)
+SHORTLINK_API_KEY = os.environ.get("SHORTLINK_API_KEY", "pb8UNiXZd8bW4hUWszTMdQkwqhB3")
 #add your custom time in secs for shortlink expiration.
 # 24hr = 86400
 # 12hr = 43200
@@ -72,7 +73,7 @@ TUT_VID = os.environ.get("TUT_VID","https://t.me/How_to_Download_7x/32")
 
 #Payment to remove the token system
 #put TRUE if you want this feature.
-USE_SHORTLINK = True if (os.environ.get('USE_SHORTLINK', "False")).capitalize == "True" else False 
+USE_SHORTLINK = True if os.environ.get('USE_SHORTLINK', "FALSE") == "TRUE" else False 
 #UPI ID
 UPI_ID = os.environ.get("UPI_ID", " ")
 #UPI QR CODE IMAGE
@@ -98,11 +99,11 @@ FORCE_MSG = os.environ.get("FORCE_MSG", "Hello {first}\n\n<b>You need to join in
 #custom caption 
 CUSTOM_CAPTION = os.environ.get("CUSTOM_CAPTION", None)
 #protected content so that no files can be sent from the bot to anyone. recommended False
-# True for yes False if no
-PROTECT_CONTENT = True if os.environ.get("PROTECT_CONTENT", "False").capitalize == "TRUE" else False
+# TRUE for yes FALSE if no
+PROTECT_CONTENT = True if os.environ.get("PROTECT_CONTENT", "FALSE") == "TRUE" else False
 #used if you dont need buttons on database channel.
 # True for yes False if no
-DISABLE_CHANNEL_BUTTON = True if os.environ.get("DISABLE_CHANNEL_BUTTON", "TRUE").capitalize == "TRUE" else False
+DISABLE_CHANNEL_BUTTON = True if os.environ.get("DISABLE_CHANNEL_BUTTON", "TRUE") == "TRUE" else False
 #you can add admin inside the bot
 
 
