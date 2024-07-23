@@ -1,5 +1,7 @@
 import asyncio
+import os
 import random
+import sys
 import time
 import string
 from pyrogram import Client, filters
@@ -352,10 +354,29 @@ async def admin_list_command(client: Bot, message: Message):
     await message.reply(f"Full admin list 📃\n<code>{admin_list}</code>")
     return
 
-@Bot.on_message(filters.command('ping')  & filters.private & filters.user(ADMINS))
+@Bot.on_message(filters.command('ping')  & filters.private)
 async def check_ping_command(client: Bot, message: Message):
-    message.reply_text("pong!! 🏓")
+    start_t = time.time()
+    rm = await message.reply_text("Pinging....", quote=True)
+    end_t = time.time()
+    time_taken_s = (end_t - start_t) * 1000
+    await rm.edit(f"Ping 🔥!\n{time_taken_s:.3f} ms")
     return
+
+
+@Client.on_message(filters.private & filters.command('restart') & filters.user(ADMINS))
+async def restart(client, message):
+    msg = await message.reply_text(
+        text="<i>Trying To Restarting.....</i>",
+        quote=True
+    )
+    await asyncio.sleep(5)
+    await msg.edit("<i>Server Restarted Successfully ✅</i>")
+    try:
+        os.execl(sys.executable, sys.executable, *sys.argv)
+    except Exception as e:
+        print(e)
+
 
 if USE_PAYMENT:
     @Bot.on_message(filters.command('add_prem') & filters.private & filters.user(ADMINS))
