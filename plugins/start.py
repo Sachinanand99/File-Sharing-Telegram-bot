@@ -17,17 +17,6 @@ from database.database import add_admin, add_user, del_admin, del_user, full_adm
 SECONDS = TIME 
 TUT_VID = f"{TUT_VID}"
 
-from pyrogram.types import ReplyKeyboardMarkup
-
-
-buttonz=ReplyKeyboardMarkup(
-            [
-                ["start⚡️","ch2l📚","ping🏓"],
-            ],
-            resize_keyboard=True
-        )
-
-
 @Bot.on_message(filters.command('start') & filters.private & subscribed & subscribed2)
 async def start_command(client: Client, message: Message):
     id = message.from_user.id
