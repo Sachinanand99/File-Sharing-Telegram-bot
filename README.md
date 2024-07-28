@@ -23,6 +23,16 @@ I Guess This Will Be Usefull For Many People.....😇.
 
 ### Setup
 - Add the bot to Database Channel with all permission
+- Go to botfather and add the following commands - 
+````
+start - check whether bot is online🟢
+ch2l - convert hash to link here 🧑‍💻
+ping - to ping the bot🙂
+stats - uptime of the bot [admin only]⏱
+users - total users active [admin only]👥
+batch - to generate the link in batch [admin only]🔗
+genlink - to generate link [admin only]🔀
+````
 
 ### Installation
 #### Deploy on Heroku
