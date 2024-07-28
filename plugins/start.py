@@ -17,6 +17,16 @@ from database.database import add_admin, add_user, del_admin, del_user, full_adm
 SECONDS = TIME 
 TUT_VID = f"{TUT_VID}"
 
+from pyrogram.types import ReplyKeyboardMarkup
+
+
+buttonz=ReplyKeyboardMarkup(
+            [
+                ["start⚡️","ch2l📚","ping🏓"],
+            ],
+            resize_keyboard=True
+        )
+
 
 @Bot.on_message(filters.command('start') & filters.private & subscribed & subscribed2)
 async def start_command(client: Client, message: Message):
@@ -221,6 +231,24 @@ async def not_joined(client: Client, message: Message):
         quote=True,
         disable_web_page_preview=True
     )
+
+
+@Bot.on_message(filters.command('ch2l') & filters.private)
+async def gen_link_encoded(client: Bot, message: Message):
+    try:
+        hash = await client.ask(text="Enter the code here... \n /cancel to cancel the operation",chat_id = message.from_user.id, timeout=60)
+    except Exception as e:
+        print(e)
+        await hash.reply(f"😔 some error occurred {e}")
+        return
+    if hash.text == "/cancel":
+        await hash.reply("Cancelled 😉!")
+        return
+    link = f"https://t.me/{client.username}?start={hash.text}"
+    reply_markup = InlineKeyboardMarkup([[InlineKeyboardButton("🎉 Click Here ", url=link)]])
+    await hash.reply_text(f"<b>🧑‍💻 Here is your generated link", quote=True, reply_markup=reply_markup)
+    return
+        
 
 @Bot.on_message(filters.command('users') & filters.private & filters.user(ADMINS))
 async def get_users(client: Bot, message: Message):

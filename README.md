@@ -11,8 +11,9 @@ Telegram Bot to store Posts and Documents and it can Access by Special Links.
 I Guess This Will Be Usefull For Many People.....😇. 
 
 ### Changelogs
-1. Ping command changed.
-2. restart command added.
+1. added code system. You should provide users the code with bot tag instead of the link. If your bot got banned it will be tough to change every link of your channel.
+2. user need to use `/ch2l` command for converting to link.
+3. fixed single force sub channel issue.
 
 ### Features
 - Fully customisable.
