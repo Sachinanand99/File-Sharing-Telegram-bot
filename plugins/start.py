@@ -10,7 +10,7 @@ from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
 from pyrogram.errors import FloodWait, UserIsBlocked, InputUserDeactivated
 
 from bot import Bot
-from config import ADMINS, CHANNEL_ID, FORCE_MSG, OWNER_TAG, START_MSG, CUSTOM_CAPTION, DISABLE_CHANNEL_BUTTON, PROTECT_CONTENT, OWNER_ID, CHANNEL_LINK, SHORTLINK_API_URL, SHORTLINK_API_KEY, USE_PAYMENT, USE_SHORTLINK, VERIFY_EXPIRE, TIME, TUT_VID
+from config import ADMINS, CHANNEL_ID, FORCE_MSG, FORCE_SUB_CHANNEL, FORCE_SUB_CHANNEL2, OWNER_TAG, START_MSG, CUSTOM_CAPTION, DISABLE_CHANNEL_BUTTON, PROTECT_CONTENT, OWNER_ID, CHANNEL_LINK, SHORTLINK_API_URL, SHORTLINK_API_KEY, USE_PAYMENT, USE_SHORTLINK, VERIFY_EXPIRE, TIME, TUT_VID
 from helper_func import get_readable_time, increasepremtime, subscribed, subscribed2, decode, get_messages, get_shortlink, get_verify_status, update_verify_status, get_exp_time
 from database.database import add_admin, add_user, del_admin, del_user, full_adminbase, full_userbase, present_admin, present_user
 
@@ -40,7 +40,7 @@ async def start_command(client: Client, message: Message):
                 await update_verify_status(id, is_verified=True, verified_time=time.time())
                 if verify_status["link"] == "":
                     reply_markup = None
-                await message.reply(f"Your token successfully verified and valid for: 24 Hour ⏳", reply_markup=reply_markup, protect_content=False, quote=True)
+                await message.reply(f"Your token successfully verified and valid for: {get_exp_time(VERIFY_EXPIRE)} ⏳", reply_markup=reply_markup, protect_content=False, quote=True)
     if len(message.text) > 7:
         for i in range(1):
             if USE_SHORTLINK : 
@@ -114,73 +114,72 @@ async def start_command(client: Client, message: Message):
                     pass    
             await notification_msg.edit("<b>Your file has been successfully deleted! 😼</b>")  
             return  
-    if (1 == 1):
-        for i in range(1):
-            if USE_SHORTLINK : 
-                if id not in ADMINS:
-                    try:
-                        if not verify_status['is_verified']:
-                            continue
-                    except:
-                        continue
-            reply_markup = InlineKeyboardMarkup(
-                [
-                    [
-                        InlineKeyboardButton("😊 About Me", callback_data="about"),
-                        InlineKeyboardButton("🔒 Close", callback_data="close")
-                    ]
-                ]
-            )
-            await message.reply_text(
-                text=START_MSG.format(
-                    first=message.from_user.first_name,
-                    last=message.from_user.last_name,
-                    username=None if not message.from_user.username else '@' + message.from_user.username,
-                    mention=message.from_user.mention,
-                    id=message.from_user.id
-                ),
-                reply_markup=reply_markup,
-                disable_web_page_preview=True,
-                quote=True
-            )
-            return
-    if (1 == 1):
+    for i in range(1):
         if USE_SHORTLINK : 
-            if id in ADMINS:
-                return
-            verify_status = await get_verify_status(id)
-            if not verify_status['is_verified']:
-                token = ''.join(random.choices(string.ascii_letters + string.digits, k=10))
-                await update_verify_status(id, verify_token=token, link="")
-                link = await get_shortlink(SHORTLINK_API_URL, SHORTLINK_API_KEY,f'https://telegram.dog/{client.username}?start=verify_{token}')
-                if USE_PAYMENT:
-                    btn = [
-                    [InlineKeyboardButton("Click Here 👆", url=link),
-                    InlineKeyboardButton('How to open this link 👆', url=TUT_VID)],
-                    [InlineKeyboardButton("Buy Premium plan", callback_data="buy_prem")]
-                    ]
-                else:
-                    btn = [
-                    [InlineKeyboardButton("Click Here 👆", url=link)],
-                    [InlineKeyboardButton('How to open this link 👆', url=TUT_VID)]
-                    ]
-                await message.reply(f"Your Ads token is expired, refresh your token and try again. \n\nToken Timeout: {get_exp_time(VERIFY_EXPIRE)}\n\nWhat is the token?\n\nThis is an ads token. If you pass 1 ad, you can use the bot for 24 Hour after passing the ad", reply_markup=InlineKeyboardMarkup(btn), protect_content=False, quote=True)
-                return
+            if id not in ADMINS:
+                try:
+                    if not verify_status['is_verified']:
+                        continue
+                except:
+                    continue
+        reply_markup = InlineKeyboardMarkup(
+            [
+                [
+                    InlineKeyboardButton("😊 About Me", callback_data="about"),
+                    InlineKeyboardButton("🔒 Close", callback_data="close")
+                ]
+            ]
+        )
+        await message.reply_text(
+            text=START_MSG.format(
+                first=message.from_user.first_name,
+                last=message.from_user.last_name,
+                username=None if not message.from_user.username else '@' + message.from_user.username,
+                mention=message.from_user.mention,
+                id=message.from_user.id
+            ),
+            reply_markup=reply_markup,
+            disable_web_page_preview=True,
+            quote=True
+        )
         return
+    if USE_SHORTLINK : 
+        if id in ADMINS:
+            return
+        verify_status = await get_verify_status(id)
+        if not verify_status['is_verified']:
+            token = ''.join(random.choices(string.ascii_letters + string.digits, k=10))
+            await update_verify_status(id, verify_token=token, link="")
+            link = await get_shortlink(SHORTLINK_API_URL, SHORTLINK_API_KEY,f'https://telegram.dog/{client.username}?start=verify_{token}')
+            if USE_PAYMENT:
+                btn = [
+                [InlineKeyboardButton("Click Here 👆", url=link),
+                InlineKeyboardButton('How to open this link 👆', url=TUT_VID)],
+                [InlineKeyboardButton("Buy Premium plan", callback_data="buy_prem")]
+                ]
+            else:
+                btn = [
+                [InlineKeyboardButton("Click Here 👆", url=link)],
+                [InlineKeyboardButton('How to open this link 👆', url=TUT_VID)]
+                ]
+            await message.reply(f"Your Ads token is expired, refresh your token and try again. \n\nToken Timeout: {get_exp_time(VERIFY_EXPIRE)}\n\nWhat is the token?\n\nThis is an ads token. If you pass 1 ad, you can use the bot for {get_exp_time(VERIFY_EXPIRE)} after passing the ad", reply_markup=InlineKeyboardMarkup(btn), protect_content=False, quote=True)
+            return
+    return
 
 
     
-#=====================================================================================##
+#=====================================================================================#
 
 WAIT_MSG = """<b>Processing ...</b>"""
 
 REPLY_ERROR = """<code>Use this command as a replay to any telegram message without any spaces.</code>"""
 
-#=====================================================================================##
+#=====================================================================================#
 
 @Bot.on_message(filters.command('start') & filters.private)
 async def not_joined(client: Client, message: Message):
-    buttons = [
+    if FORCE_SUB_CHANNEL & FORCE_SUB_CHANNEL2:
+        buttons = [
         [
             InlineKeyboardButton(
                 "Join Channel 👆",
@@ -190,6 +189,14 @@ async def not_joined(client: Client, message: Message):
                 url=client.invitelink2),
         ]
     ]
+    elif FORCE_SUB_CHANNEL:
+        buttons = [
+            [
+                InlineKeyboardButton(
+                    "Join Channel 👆",
+                    url=client.invitelink)
+            ]
+        ]
     try:
         buttons.append(
             [
