@@ -68,6 +68,7 @@ python3 main.py
 ## Basic Commands
 - `/start` - Check whether bot is online 🟢
 - `/ping` - For checking ping of the bot 🔥
+- `/ch2l` - For converting code to link for respected bot
 - `/stats` - Uptime of the bot (admin only) ⏱️
 - `/users` - Total users active (admin only) 👥
 - `/batch` - To generate the link in batch (admin only) 🔗
