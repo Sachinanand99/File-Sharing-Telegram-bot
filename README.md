@@ -151,7 +151,6 @@ python3 main.py
 * APP_ID
 * API_HASH
 * DB_URL
-* CHANNEL_LINK
 * CHANNEL_ID
 * OWNER_ID
 * OWNER_TAG

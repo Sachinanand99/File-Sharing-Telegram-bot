@@ -10,7 +10,7 @@ from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
 from pyrogram.errors import FloodWait, UserIsBlocked, InputUserDeactivated
 
 from bot import Bot
-from config import ADMINS, CHANNEL_ID, FORCE_MSG, FORCE_SUB_CHANNEL, FORCE_SUB_CHANNEL2, OWNER_TAG, START_MSG, CUSTOM_CAPTION, DISABLE_CHANNEL_BUTTON, PROTECT_CONTENT, OWNER_ID, CHANNEL_LINK, SHORTLINK_API_URL, SHORTLINK_API_KEY, USE_PAYMENT, USE_SHORTLINK, VERIFY_EXPIRE, TIME, TUT_VID
+from config import ADMINS, CHANNEL_ID, FORCE_MSG, FORCE_SUB_CHANNEL, FORCE_SUB_CHANNEL2, OWNER_TAG, START_MSG, CUSTOM_CAPTION, DISABLE_CHANNEL_BUTTON, PROTECT_CONTENT, OWNER_ID, SHORTLINK_API_URL, SHORTLINK_API_KEY, USE_PAYMENT, USE_SHORTLINK, VERIFY_EXPIRE, TIME, TUT_VID
 from helper_func import get_readable_time, increasepremtime, subscribed, subscribed2, decode, get_messages, get_shortlink, get_verify_status, update_verify_status, get_exp_time
 from database.database import add_admin, add_user, del_admin, del_user, full_adminbase, full_userbase, present_admin, present_user
 
@@ -89,10 +89,7 @@ async def start_command(client: Client, message: Message):
                     caption = CUSTOM_CAPTION.format(previouscaption="" if not msg.caption else msg.caption.html,    filename=msg.document.file_name)
                 else:   
                     caption = "" if not msg.caption else msg.caption.html   
-                if DISABLE_CHANNEL_BUTTON:  
-                    reply_markup = msg.reply_markup 
-                else:   
-                    reply_markup = None 
+                reply_markup = None 
                 try:    
                     snt_msg = await msg.copy(chat_id=message.from_user.id, caption=caption, parse_mode=ParseMode.HTML,  reply_markup=reply_markup, protect_content=PROTECT_CONTENT)
                     await asyncio.sleep(0.5)    
@@ -104,7 +101,7 @@ async def start_command(client: Client, message: Message):
                 except: 
                     pass    
                 
-            notification_msg = await message.reply(f"<b>❗️ <u>Notice</u> ❗️</b>\n\n<b>This file will be  deleted in  {SECONDS // 60} minutes. Please save or forward it to your saved messages before it gets deleted.</b>")
+            notification_msg = await message.reply(f"<b>❗️ <u>Notice</u> ❗️</b>\n\n<b>This file will be  deleted in {get_exp_time(SECONDS)}. Please save or forward it to your saved messages before it gets deleted.</b>")
             await asyncio.sleep(SECONDS)    
             for snt_msg in snt_msgs:    
                 try:    
@@ -326,15 +323,9 @@ async def command_add_admin(client: Bot, message: Message):
             await add_admin(admin_id.text)
             await message.reply(f"Added admin <code>{admin_id.text}</code> 😼")
             try:
-                reply_markup = InlineKeyboardMarkup(
-                    [
-                        [InlineKeyboardButton("Join Channel 👆", url=CHANNEL_LINK)]
-                    ]
-                )
                 await client.send_message(
                     chat_id=admin_id.text,
-                    text=f"You are verified, join the channel for forwarding links for batch commands. 😁",
-                    reply_markup=reply_markup
+                    text=f"You are verified, ask the owner to add them to db channels. 😁"
                 )
             except:
                 await message.reply("Failed to send invite. Please ensure that they have started the bot. 🥲")
