@@ -1,9 +1,9 @@
 from operator import add
 import os
 import logging
-#import dotenv
+import dotenv
 
-#dotenv.load_dotenv()
+# dotenv.load_dotenv()
 
 from logging.handlers import RotatingFileHandler
 
@@ -77,7 +77,7 @@ UPI_ID = os.environ.get("UPI_ID", " ")
 #UPI QR CODE IMAGE
 UPI_IMAGE_URL = os.environ.get("UPI_IMAGE_URL", "")
 #SCREENSHOT URL of ADMIN for verification of payments
-SCREENSHOT_URL = os.environ.get("SCREENSHOT_URL", "")
+SCREENSHOT_URL = os.environ.get("SCREENSHOT_URL", f"t.me/{OWNER_TAG}")
 #Time and its price
 #7 Days
 PRICE1 = os.environ.get("PRICE1", "30 rs")
