@@ -102,14 +102,17 @@ PROTECT_CONTENT = True if os.environ.get("PROTECT_CONTENT", "FALSE") == "TRUE" e
 #used if you dont need buttons on database channel.
 # True for yes False if no
 DISABLE_CHANNEL_BUTTON = True if os.environ.get("DISABLE_CHANNEL_BUTTON", "TRUE") == "TRUE" else False
-#you can add admin inside the bot
+#you can add admin inside the bot(bug right now will fix later)
+
+#add admins with space seperated
+# 7195990000 289371935 248979023
+ADMINS = os.environ.get("ADMINS").split()
 
 
 
 
 #no need to add anything from now on
 
-ADMINS = []
 ADMINS.append(OWNER_ID)
 
 LOG_FILE_NAME = "logs.txt"
