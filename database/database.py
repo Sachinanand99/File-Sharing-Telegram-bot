@@ -7,6 +7,7 @@ database = dbclient[DB_NAME]
 
 user_data = database['users']
 admin_data= database['admins']
+link_data = database['links']
 
 default_verify = {
     'is_verified': False,
@@ -25,6 +26,34 @@ def new_user(id):
             'link': ""
         }
     }
+
+#links
+async def new_link(hash: str):
+    return {
+        'clicks' : 0,
+        'hash': hash
+    }
+
+async def gen_new_count(hash: str):
+    data = await new_link(hash)
+    await link_data.insert_one(data)
+    return
+
+async def present_hash(hash:str):
+    found = await(link_data.find_one({"hash" : hash}))
+    return bool(found)
+
+async def inc_count(hash: str):
+    data = await link_data.find_one({'hash': hash})
+    clicks = data.get('clicks')
+    await link_data.update_one({'hash': hash}, {'$set': {'clicks': clicks+1}})
+    return
+
+async def get_clicks(hash: str):
+    data = await link_data.find_one({'hash': hash})
+    clicks = data.get('clicks')
+    return clicks
+
 
 #users
 async def present_user(user_id: int):

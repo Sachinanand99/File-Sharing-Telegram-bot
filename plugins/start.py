@@ -12,7 +12,7 @@ from pyrogram.errors import FloodWait, UserIsBlocked, InputUserDeactivated
 from bot import Bot
 from config import ADMINS, CHANNEL_ID, FORCE_MSG, FORCE_SUB_CHANNEL, FORCE_SUB_CHANNEL2, OWNER_TAG, START_MSG, CUSTOM_CAPTION, DISABLE_CHANNEL_BUTTON, PROTECT_CONTENT, OWNER_ID, SHORTLINK_API_URL, SHORTLINK_API_KEY, USE_PAYMENT, USE_SHORTLINK, VERIFY_EXPIRE, TIME, TUT_VID, U_S_E_P
 from helper_func import encode, get_readable_time, increasepremtime, subscribed, subscribed2, decode, get_messages, get_shortlink, get_verify_status, update_verify_status, get_exp_time
-from database.database import add_admin, add_user, del_admin, del_user, full_adminbase, full_userbase, present_admin, present_user
+from database.database import add_admin, add_user, del_admin, del_user, full_adminbase, full_userbase, gen_new_count, get_clicks, inc_count, new_link, present_admin, present_hash, present_user
 
 SECONDS = TIME 
 TUT_VID = f"{TUT_VID}"
@@ -57,6 +57,12 @@ async def start_command(client: Client, message: Message):
             _string = await decode(base64_string)
             argument = _string.split("-")
             if (len(argument) == 5 )or (len(argument) == 4):
+                if not await present_hash(base64_string):
+                    try:
+                        await gen_new_count(base64_string)
+                    except:
+                        pass
+                await inc_count(base64_string)
                 if len(argument) == 5:
                     try:
                         start = int(int(argument[3]) / abs(client.db_channel.id))
@@ -178,6 +184,12 @@ async def start_command(client: Client, message: Message):
                     return
             except:
                     newbase64_string = await encode(f"sav-ory-{_string}")
+                    if not await present_hash(newbase64_string):
+                        try:
+                            await gen_new_count(newbase64_string)
+                        except:
+                            pass
+                    clicks = await get_clicks(newbase64_string)
                     newLink = f"https://t.me/{client.username}?start={newbase64_string}"
                     link = await get_shortlink(SHORTLINK_API_URL, SHORTLINK_API_KEY,f'{newLink}')
                     if USE_PAYMENT:
@@ -191,7 +203,7 @@ async def start_command(client: Client, message: Message):
                         [InlineKeyboardButton("Click Here 👆", url=link)],
                         [InlineKeyboardButton('How to open this link 👆', url=TUT_VID)]
                         ]
-                    await message.reply(f"Here is your link 👇.", reply_markup=InlineKeyboardMarkup(btn), protect_content=False, quote=True)
+                    await message.reply(f"Total clicks {clicks}. Here is your link 👇.", reply_markup=InlineKeyboardMarkup(btn), protect_content=False, quote=True)
                     return
     
     for i in range(1):
