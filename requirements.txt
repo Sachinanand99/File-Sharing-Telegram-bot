@@ -2,6 +2,7 @@
 pyrofork
 TgCrypto
 pyromod==1.5
+python-dotenv
 # --- For-Database ------------ #
 pymongo
 motor
