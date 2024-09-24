@@ -77,25 +77,26 @@ python3 main.py
 - `/users` - Total users active (admin only) 👥
 - `/batch` - To generate the link in batch (admin only) 🔗
 - `/genlink` - To generate link (admin only) 🔀
-- `/auth` - For using the bot which will send the ID to the owner's DM. The owner will add the admin to config file and restart the bot.
-- `/add_prem` - adding user to premium services(admins only)
+- `/auth` - For using the bot which will send the ID to the owner's DM. The owner will add the admin to config file and restart the bot. 
+- `/add_prem` - adding user to premium services(admins only) ⚡ UNDER CONSTRUCTION
 - `/restart` - For restarting the bot(admins only)
 - `/admins` - list all admins(admins only)
-- `/add_admin` - For adding new admins(owner only) restart recommended
-- `/del_admin` - For removing admins(owner only) restart recommended
+- `/add_admin` - For adding new admins(owner only) restart recommended ⚡ UNDER CONSTRUCTION
+- `/del_admin` - For removing admins(owner only) restart recommended ⚡ UNDER CONSTRUCTION
 
 ## Secret Commands
 - `/broadcast` - Reply to any message to broadcast it to all users(owner only).
 
 ### Variables
+⚡ Use TRUE instead of True or true.
 
 * `API_HASH` Your API Hash from my.telegram.org
 * `APP_ID` Your API ID from my.telegram.org
 * `TG_BOT_TOKEN` Your bot token from @BotFather
 * `OWNER_ID` Must enter Your Telegram Id
 * `CHANNEL_ID` Your Channel ID eg:- -100xxxxxxxx
-* `DATABASE_URL` Your mongo db url
-* `DATABASE_NAME` Your mongo db session name
+* `DB_URL` Your mongo db url
+* `DB_NAME` Your mongo db session name
 * `TIME` Time in seconds for message to get delete after downloading file
 * `ADMINS` Optional: A space separated list of user_ids of Admins, they can only create links
 * `START_MESSAGE` Optional: start message of bot, use HTML

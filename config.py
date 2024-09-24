@@ -114,13 +114,13 @@ DISABLE_CHANNEL_BUTTON = True if os.environ.get("DISABLE_CHANNEL_BUTTON", "TRUE"
 
 #add admins with space seperated
 # 7195990000 289371935 248979023
-ADMINS = os.environ.get("ADMINS", "").split()
+ADMIN_LIST = os.environ.get("ADMINS", "").split()
 
 
 
 
 #no need to add anything from now on
-
+ADMINS = [int(admin) for admin in ADMIN_LIST if admin.isdigit()]
 ADMINS.append(OWNER_ID)
 
 
@@ -138,6 +138,7 @@ logging.basicConfig(
         logging.StreamHandler()
     ]
 )
+
 logging.getLogger("pyrogram").setLevel(logging.WARNING)
 def LOGGER(name: str) -> logging.Logger:
     return logging.getLogger(name)
