@@ -13,10 +13,9 @@ async def stats(bot: Bot, message: Message):
     await message.reply(BOT_STATS_TEXT.format(uptime=time))
 
 
+@Bot.on_message(filters.private & ~filters.user(ADMINS) & ~filters.command(['start','ping', 'ch2l', 'cancel']))
 # @Bot.on_message(filters.private & filters.incoming)
-# async def useless(_, message: Message):
-#     if message.from_user.id in ADMINS:
-#         print(f"Admin {message.from_user.id} tried to access the useless function.")
-#     if USER_REPLY_TEXT:
-#         await message.reply(USER_REPLY_TEXT)
+async def useless(_, message: Message):
+    if USER_REPLY_TEXT:
+        await message.reply(USER_REPLY_TEXT)
 
