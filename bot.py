@@ -83,16 +83,16 @@ class Bot(Client):
             if x in ADMINS:
                 continue
             ADMINS.append(x)
-        # await self.send_message(
-        #     chat_id=OWNER_ID,
-        #     text="Bot has started! 😉"
-        # )
+        await self.send_message(
+            chat_id=OWNER_ID,
+            text="Bot has started! 😉"
+        )
 
         self.set_parse_mode(ParseMode.HTML)
         self.LOGGER(__name__).info(f"Bot Running..!")
         self.username = usr_bot_me.username
 
-        
+
         #web-response
         app = web.AppRunner(await web_server())
         await app.setup()
